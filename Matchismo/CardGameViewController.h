@@ -11,3 +11,4 @@
 @interface CardGameViewController : UIViewController
 
 @end
+//[object getLocation\

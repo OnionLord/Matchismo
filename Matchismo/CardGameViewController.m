@@ -48,7 +48,7 @@
     int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
     [self.game chooseCardAtIndex:chosenButtonIndex];
     [self updateUI];
-    self.matchLabel.text = sender.currentTitle;
+    
 }
 -(void)updateUI
 {
@@ -61,6 +61,15 @@
         cardButton.enabled = !card.isMatched;
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score : %d", self.game.score];
+    if(self.game.cardTwo)
+    {
+        self.matchLabel.text = [NSString stringWithFormat:@"Card %@ and %@ are matched.", self.game.cardOne, self.game.cardTwo];
+    }
+    else{
+        self.matchLabel.text = @"";
+    }
+    //[self.game.cardOne stringByAppendingString:self.game.cardTwo];
+    //[rankStrings[self.rank] stringByAppendingString:self.suit]
     
 }
 

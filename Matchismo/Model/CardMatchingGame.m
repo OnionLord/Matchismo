@@ -24,6 +24,8 @@
 -(instancetype)initWithCardCount:(NSUInteger)count
                        usingDeck:(Deck *)deck;
 {
+    self.cardOne = nil;
+    self.cardTwo = nil;
     self = [super init];
     if(self)
     {
@@ -75,6 +77,8 @@ static const int COST_TO_CHOOSE = 1;
                         self.score += matchScore * MATCH_BONUS;
                         otherCard.matched = YES;
                         card.matched = YES;
+                        self.cardOne = otherCard.contents;
+                        self.cardTwo = card.contents;
                         
                     }
                     else{

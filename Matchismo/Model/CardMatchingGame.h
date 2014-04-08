@@ -19,6 +19,6 @@
 -(Card *)cardAtIndex:(NSUInteger) index;
 
 @property (nonatomic, readonly) NSInteger score;
-@property (nonatomic, readonly) NSString *cardOne;
-@property (nonatomic, readonly) NSString *cardTwo;
+@property (nonatomic, readwrite) NSString *cardOne;
+@property (nonatomic, readwrite) NSString *cardTwo;
 @end

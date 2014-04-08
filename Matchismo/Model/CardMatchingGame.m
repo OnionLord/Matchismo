@@ -90,6 +90,10 @@ static const int COST_TO_CHOOSE = 1;
                     }
                     break;
                 }
+                else
+                {
+                    self.matchState = 1;
+                }
             }
             self.score -= COST_TO_CHOOSE;
             card.chosen = YES;

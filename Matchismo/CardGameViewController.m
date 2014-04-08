@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 COMP420. All rights reserved.
 //
 
+//2014.4.8 카드 30장 추가 및 초기화 버튼 생성.
+
 #import "CardGameViewController.h"
 #import "PlayingCard.h"
 #import "PlayingCardDeck.h"
@@ -15,6 +17,7 @@
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *matchLabel;
 @end
 
 @implementation CardGameViewController
@@ -32,6 +35,12 @@
     return [[PlayingCardDeck alloc] init];
 }
 
+//init
+- (IBAction)initGame:(id)sender
+{
+    self.game = nil;
+    [self updateUI ];
+}
 
 
 - (IBAction)touchCardButton:(UIButton *)sender
@@ -39,6 +48,7 @@
     int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
     [self.game chooseCardAtIndex:chosenButtonIndex];
     [self updateUI];
+    self.matchLabel.text = sender.currentTitle;
 }
 -(void)updateUI
 {
@@ -51,6 +61,7 @@
         cardButton.enabled = !card.isMatched;
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score : %d", self.game.score];
+    
 }
 
 

@@ -86,13 +86,16 @@ static const int COST_TO_CHOOSE = 1;
                     else{
                         self.score-= MISMATCH_PENALTY;
                         otherCard.chosen = NO;
+                        self.cardOne = otherCard.contents;
+                        self.cardTwo = card.contents;
                         self.matchState = 3;
                     }
                     break;
                 }
                 else
                 {
-                    self.matchState = 1;
+                    self.cardTwo = card.contents;
+                    self.matchState = 4;
                 }
             }
             self.score -= COST_TO_CHOOSE;

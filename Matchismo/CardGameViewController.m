@@ -66,7 +66,11 @@
         self.matchLabel.text = [NSString stringWithFormat:@"Card [%@] and [%@] are matched. +4", self.game.cardOne, self.game.cardTwo];
     }
     else if(self.game.matchState == 3){
-        self.matchLabel.text = @"MisMatched -2";
+         self.matchLabel.text = [NSString stringWithFormat:@"Card [%@] and [%@] are mismatched. -2", self.game.cardOne, self.game.cardTwo];
+    }
+    else if(self.game.matchState == 4)
+    {
+        self.matchLabel.text = [NSString stringWithFormat:@"Select [%@]", self.game.cardTwo];
     }
     else{
         self.matchLabel.text = @"";

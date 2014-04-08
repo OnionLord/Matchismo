@@ -20,6 +20,8 @@
 -(Card *)cardAtIndex:(NSUInteger) index;
 
 @property (nonatomic, readonly) NSInteger score;
+//맞추었을 때 주어지는 점수
+@property (nonatomic, readwrite) NSInteger givenScore;
 //선택된 카드. one two sam 순서대로 저장된다.
 @property (nonatomic, readwrite) NSString *cardOne;
 @property (nonatomic, readwrite) NSString *cardTwo;

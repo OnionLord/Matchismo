@@ -87,10 +87,10 @@
     //7 : (3개모드) 모두 다름
     if(self.game.matchState == 2)
     {
-        self.matchLabel.text = [NSString stringWithFormat:@"Card [%@] and [%@] are matched. +4", self.game.cardOne, self.game.cardTwo];//일치할 경우의 메시지
+        self.matchLabel.text = [NSString stringWithFormat:@"Card [%@] and [%@] are matched. +%d", self.game.cardOne, self.game.cardTwo, self.game.givenScore];//일치할 경우의 메시지
     }
     else if(self.game.matchState == 3){
-         self.matchLabel.text = [NSString stringWithFormat:@"Card [%@] and [%@] are mismatched. -2", self.game.cardOne, self.game.cardTwo];//불일치할 경우의 메시지
+         self.matchLabel.text = [NSString stringWithFormat:@"Card [%@] and [%@] are mismatched. -%d", self.game.cardOne, self.game.cardTwo, self.game.givenScore];//불일치할 경우의 메시지
     }
     else if(self.game.matchState == 4)
     {
@@ -100,21 +100,7 @@
     {
         self.matchLabel.text = @"";
     }
-    else if(self.game.matchState == 5)//state==5, 3개 모드일때 부분 선택
-    {
-        self.matchLabel.text = [NSString stringWithFormat:@"Card [%@], [%@], [%@] are partialy matched. +2", self.game.cardOne, self.game.cardTwo, self.game.cardSam];//불일치할 경우의 메시지
-        
-    }
-    else if(self.game.matchState == 6)//state==6, 3개 모드일때 모두 선택
-    {
-        self.matchLabel.text = [NSString stringWithFormat:@"Card [%@], [%@], [%@] are all matched. +4", self.game.cardOne, self.game.cardTwo, self.game.cardSam];//불일치할 경우의 메시지
-        
-    }
-    else if(self.game.matchState == 7)//state==7, 3개 모드일때 다 선택 안됨
-    {
-        self.matchLabel.text = [NSString stringWithFormat:@"Card [%@], [%@], [%@] are mismatched. -2", self.game.cardOne, self.game.cardTwo, self.game.cardSam];//불일치할 경우의 메시지
 
-    }
 
     
 }

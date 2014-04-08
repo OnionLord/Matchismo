@@ -91,7 +91,7 @@ static const int COST_TO_CHOOSE = 1;
                     break;
                 }
             }
-            //self.score -= COST_TO_CHOOSE;
+            self.score -= COST_TO_CHOOSE;
             card.chosen = YES;
         }
     }

@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *matchLabel;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *matchSegment;
 @end
 
 @implementation CardGameViewController
@@ -35,13 +36,19 @@
     return [[PlayingCardDeck alloc] init];
 }
 
-//init
+//게임 초기화 버튼 클릭시
+//이전 게임의 내용을 nil로 해서 버리고
+//다시 업데이트를 한다.
 - (IBAction)initGame:(id)sender
 {
     self.game = nil;
     [self updateUI ];
 }
 
+- (IBAction)selectMatch:(id)sender
+{
+    self.matchSegment.enabled = NO;
+}
 
 - (IBAction)touchCardButton:(UIButton *)sender
 {
@@ -61,29 +68,33 @@
         cardButton.enabled = !card.isMatched;
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score : %d", self.game.score];
+    //각 state마나 나타낼 메시지
     if(self.game.matchState == 2)
     {
-        self.matchLabel.text = [NSString stringWithFormat:@"Card [%@] and [%@] are matched. +4", self.game.cardOne, self.game.cardTwo];
+        self.matchSegment.enabled = NO;
+        self.matchLabel.text = [NSString stringWithFormat:@"Card [%@] and [%@] are matched. +4", self.game.cardOne, self.game.cardTwo];//일치할 경우의 메시지
     }
     else if(self.game.matchState == 3){
-         self.matchLabel.text = [NSString stringWithFormat:@"Card [%@] and [%@] are mismatched. -2", self.game.cardOne, self.game.cardTwo];
+        self.matchSegment.enabled = NO;
+         self.matchLabel.text = [NSString stringWithFormat:@"Card [%@] and [%@] are mismatched. -2", self.game.cardOne, self.game.cardTwo];//불일치할 경우의 메시지
     }
     else if(self.game.matchState == 4)
     {
-        self.matchLabel.text = [NSString stringWithFormat:@"Select [%@]", self.game.cardTwo];
+        self.matchSegment.enabled = NO;
+        self.matchLabel.text = [NSString stringWithFormat:@"Select [%@]", self.game.cardTwo];//하나만 선택시 메시지
     }
     else{
-        self.matchLabel.text = @"";
+        self.matchLabel.text = @"";//초기화시 상태창을 비워둔다.
+        //2개 선택할지 3개 선택할지 선택하게 한다.
+        self.matchSegment.enabled = YES;
+        [self.matchSegment setSelectedSegmentIndex:UISegmentedControlNoSegment];
     }
-    //[self.game.cardOne stringByAppendingString:self.game.cardTwo];
-    //[rankStrings[self.rank] stringByAppendingString:self.suit]
     
 }
 
 
 -(NSString *)titleForCard:(Card *)card
 {
-    //return card.isChosen ? card.contents : @"";
     return card.isChosen ? card.contents : @"";
 }
          

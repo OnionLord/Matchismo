@@ -56,6 +56,12 @@ static const int MISMATCH_PENALTY = 2;
 static const int MATCH_BONUS = 4;
 static const int COST_TO_CHOOSE = 1;
 
+//state 설명
+//1 : 완전 새로 시작하는 경우
+//2 : 서로 일치하는 경우
+//3 : 일치 하지 않는 경우
+//4 : 하나만 선택된 경우
+
 -(void)chooseCardAtIndex:(NSUInteger)index
 {
     Card *card = [self cardAtIndex:index];
@@ -81,7 +87,8 @@ static const int COST_TO_CHOOSE = 1;
                         self.cardOne = otherCard.contents;
                         self.cardTwo = card.contents;
                         self.matchState = 2;
-                        
+                        //일치된 경우 각 카드의 컨텐츠를 저장하고 일치된 state로 바꾼다.
+                        //일치의 경우 지정된 보너스를 받는다
                     }
                     else{
                         self.score-= MISMATCH_PENALTY;
@@ -89,6 +96,8 @@ static const int COST_TO_CHOOSE = 1;
                         self.cardOne = otherCard.contents;
                         self.cardTwo = card.contents;
                         self.matchState = 3;
+                        //불일치 되는 경우 패널티를 받는다.
+                        //불일치된 카드를 저장하고 불일치된 state로 바꾼다.
                     }
                     break;
                 }
@@ -96,10 +105,12 @@ static const int COST_TO_CHOOSE = 1;
                 {
                     self.cardTwo = card.contents;
                     self.matchState = 4;
+                    //하나만 선택된 상태
                 }
             }
             self.score -= COST_TO_CHOOSE;
             card.chosen = YES;
+            //선택시 점수를 깎을 수 있다.
         }
     }
 }

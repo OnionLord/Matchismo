@@ -61,9 +61,12 @@
         cardButton.enabled = !card.isMatched;
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score : %d", self.game.score];
-    if(self.game.cardTwo)
+    if(self.game.matchState == 2)
     {
-        self.matchLabel.text = [NSString stringWithFormat:@"Card %@ and %@ are matched.", self.game.cardOne, self.game.cardTwo];
+        self.matchLabel.text = [NSString stringWithFormat:@"Card [%@] and [%@] are matched. +4", self.game.cardOne, self.game.cardTwo];
+    }
+    else if(self.game.matchState == 3){
+        self.matchLabel.text = @"MisMatched -2";
     }
     else{
         self.matchLabel.text = @"";
@@ -76,6 +79,7 @@
 
 -(NSString *)titleForCard:(Card *)card
 {
+    //return card.isChosen ? card.contents : @"";
     return card.isChosen ? card.contents : @"";
 }
          

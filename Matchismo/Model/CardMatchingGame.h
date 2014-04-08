@@ -21,4 +21,5 @@
 @property (nonatomic, readonly) NSInteger score;
 @property (nonatomic, readwrite) NSString *cardOne;
 @property (nonatomic, readwrite) NSString *cardTwo;
+@property (nonatomic, readwrite) NSInteger matchState;
 @end

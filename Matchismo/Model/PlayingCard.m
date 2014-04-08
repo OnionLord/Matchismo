@@ -19,6 +19,7 @@
         if ([card isKindOfClass:[PlayingCard class]])
         {
             PlayingCard *otherCard = (PlayingCard *)card;
+            
             if (otherCard.rank == self.rank)
             {
                 score = 4;

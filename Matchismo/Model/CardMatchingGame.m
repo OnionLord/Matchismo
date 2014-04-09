@@ -11,6 +11,13 @@
 @interface CardMatchingGame()
 @property (nonatomic, readwrite) NSInteger score;
 @property (nonatomic, strong) NSMutableArray *cards;//of card
+
+//맞추었을 때 주어지는 점수
+@property (nonatomic, readwrite) NSInteger givenScore;
+//선택된 카드. one two sam 순서대로 저장된다.
+@property (nonatomic, readwrite) NSString *cardOne;
+@property (nonatomic, readwrite) NSString *cardTwo;
+@property (nonatomic, readwrite) NSString *cardSam;
 @end
 //ch기화 할때 초기할때 상위 클래스의  inti를 불러준다.
 @implementation CardMatchingGame
@@ -26,7 +33,7 @@
 {
     self.cardOne = nil;
     self.cardTwo = nil;
-    self.matchState = 1;
+
     self = [super init];
     if(self)
     {
@@ -152,14 +159,14 @@ static const int COST_TO_CHOOSE = 1;
                     }
                 }
 
-                printf("%s\n", [card.contents UTF8String]);
+                //하나만 선택된 경우
                 if([currentChosenCards count ] == 0)
                 {
                     self.cardOne = card.contents;
                     self.cardTwo = nil;
                     self.cardSam = nil;
                     self.matchMessage = [NSString stringWithFormat:@"Select [%@]", self.cardOne];
-                }
+                }//두개가 선택된 경우
                 else if([currentChosenCards count] == 1)
                 {
                     otherCard1 = [currentChosenCards objectAtIndex:0];

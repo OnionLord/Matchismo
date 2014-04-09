@@ -76,30 +76,9 @@
         cardButton.enabled = !card.isMatched;
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score : %d", self.game.score];
-    //각 state마나 나타낼 메시지
-    //state 설명, 현재 게임 상태
-    //1 : 완전 새로 시작하는 경우
-    //2 : (2개모드) 서로 일치하는 경우
-    //3 : (2개모드) 일치 하지 않는 경우
-    //4 : 하나만 선택된 경우
-    //5 : (3개모드) 2개만 선택됨
-    //6 : (3개모드) 모두 선택됨
-    //7 : (3개모드) 모두 다름
-    if(self.game.matchState == 2)
-    {
-        self.matchLabel.text = [NSString stringWithFormat:@"Card [%@] and [%@] are matched. +%d", self.game.cardOne, self.game.cardTwo, self.game.givenScore];//일치할 경우의 메시지
-    }
-    else if(self.game.matchState == 3){
-         self.matchLabel.text = [NSString stringWithFormat:@"Card [%@] and [%@] are mismatched. -%d", self.game.cardOne, self.game.cardTwo, self.game.givenScore];//불일치할 경우의 메시지
-    }
-    else if(self.game.matchState == 4)
-    {
-        self.matchLabel.text = [NSString stringWithFormat:@"Select [%@]", self.game.cardOne];//하나만 선택시 메시지
-    }
-    else if(self.game.matchState == 1)//state==1, 초기화 하는 상황. 혹은 선택 취소
-    {
-        self.matchLabel.text = @"";
-    }
+
+    self.matchLabel.text = self.game.matchMessage;
+
 
 
     

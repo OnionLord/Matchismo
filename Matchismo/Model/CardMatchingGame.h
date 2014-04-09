@@ -30,4 +30,6 @@
 @property (nonatomic, readwrite) NSInteger selectedMatch;
 //게임 상태 저장. 1은 새로 시작, 2는 일치. 3은 일치 안함, 4는 하나만 선택
 @property (nonatomic, readwrite) NSInteger matchState;
+//상태바에 나타낼 메시지
+@property (nonatomic, readwrite) NSString *matchMessage;
 @end
